@@ -1,0 +1,83 @@
+{
+  "_description": "Configuration for small molecule binder design with RFdiffusion2",
+  "_source": "Extracted from examples/use_case_2_small_molecule_binder.py",
+
+  "binder_design": {
+    "num_designs": 5,
+    "hotspot_residues": "auto",
+    "binding_site_radius": 8.0,
+    "min_length": 50,
+    "max_length": 150
+  },
+
+  "diffusion": {
+    "inference_steps": 50,
+    "noise_scale": 1.0,
+    "temperature": 1.0
+  },
+
+  "compute": {
+    "use_apptainer": true,
+    "gpu_required": true,
+    "timeout_hours": 1
+  },
+
+  "output": {
+    "include_trajectories": true,
+    "save_intermediate": false,
+    "format": "pdb"
+  },
+
+  "common_ligands": {
+    "PH2": "Phthalic acid",
+    "NAD": "Nicotinamide adenine dinucleotide",
+    "ATP": "Adenosine triphosphate",
+    "GTP": "Guanosine triphosphate",
+    "FAD": "Flavin adenine dinucleotide",
+    "FMN": "Flavin mononucleotide",
+    "HEM": "Heme",
+    "ZN": "Zinc ion",
+    "MG": "Magnesium ion",
+    "CA": "Calcium ion",
+    "FE": "Iron ion"
+  },
+
+  "presets": {
+    "small_peptide": {
+      "min_length": 20,
+      "max_length": 50,
+      "binding_site_radius": 6.0,
+      "description": "Small peptide binder"
+    },
+    "standard_protein": {
+      "min_length": 50,
+      "max_length": 150,
+      "binding_site_radius": 8.0,
+      "description": "Standard protein binder"
+    },
+    "large_domain": {
+      "min_length": 150,
+      "max_length": 300,
+      "binding_site_radius": 10.0,
+      "description": "Large domain binder"
+    }
+  },
+
+  "quality_profiles": {
+    "fast": {
+      "num_designs": 2,
+      "inference_steps": 20,
+      "description": "Fast test run"
+    },
+    "standard": {
+      "num_designs": 5,
+      "inference_steps": 50,
+      "description": "Standard quality"
+    },
+    "high": {
+      "num_designs": 10,
+      "inference_steps": 100,
+      "description": "High quality (slower)"
+    }
+  }
+}

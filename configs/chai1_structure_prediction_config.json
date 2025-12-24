@@ -1,0 +1,49 @@
+{
+  "_description": "Configuration for Chai1 structure prediction",
+  "_source": "Extracted from examples/use_case_3_chai1_structure_prediction.py",
+
+  "model": {
+    "num_recycles": 3,
+    "num_timesteps": 200,
+    "seed": 42,
+    "use_esm_embeddings": true
+  },
+
+  "compute": {
+    "device": "cuda:0",
+    "force_cpu": false,
+    "memory_limit_gb": null
+  },
+
+  "output": {
+    "format": "cif",
+    "include_confidence_scores": true,
+    "save_intermediate": false
+  },
+
+  "quality_profiles": {
+    "fast": {
+      "num_recycles": 1,
+      "num_timesteps": 50,
+      "description": "Fast prediction (lower quality)"
+    },
+    "standard": {
+      "num_recycles": 3,
+      "num_timesteps": 200,
+      "description": "Standard quality prediction"
+    },
+    "high": {
+      "num_recycles": 5,
+      "num_timesteps": 500,
+      "description": "High quality prediction (slower)"
+    }
+  },
+
+  "examples": {
+    "single_protein": {
+      "sequence": "AIQRTPKIQVYSRHPAENGKSNFLNCYVSGFHPSDIEVDLLKNGERIEKVEHSDLSFSKDWSFYLLYYTEFTPTEKDEYACRVNHVTLSQPKIVKWDRDM",
+      "description": "Example 96-residue protein sequence"
+    },
+    "multi_sequence_fasta": ">protein|example-protein|96-residues\nAIQRTPKIQVYSRHPAENGKSNFLNCYVSGFHPSDIEVDLLKNGERIEKVEHSDLSFSKDWSFYLLYYTEFTPTEKDEYACRVNHVTLSQPKIVKWDRDM\n\n>protein|example-peptide|20-residues\nGAALIQRTPKIQVYSRHPAE\n\n>ligand|example-molecule|SMILES\nCCCCCCCCCCCCCC(=O)O"
+  }
+}

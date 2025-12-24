@@ -1,0 +1,43 @@
+{
+  "_description": "Default configuration for RFdiffusion2 MCP scripts",
+  "_usage": "Fallback configuration when script-specific configs are not available",
+
+  "paths": {
+    "repo_root": "repo/RFdiffusion2",
+    "examples_data": "examples/data",
+    "results": "results",
+    "models": "models"
+  },
+
+  "compute": {
+    "device": "auto",
+    "prefer_gpu": true,
+    "timeout_seconds": 3600,
+    "memory_limit_gb": null
+  },
+
+  "output": {
+    "create_subdirs": true,
+    "timestamp_dirs": true,
+    "save_metadata": true,
+    "cleanup_temp_files": true
+  },
+
+  "logging": {
+    "level": "INFO",
+    "show_progress": true,
+    "save_logs": true
+  },
+
+  "validation": {
+    "check_file_exists": true,
+    "check_dependencies": true,
+    "validate_parameters": true
+  },
+
+  "error_handling": {
+    "retry_failed_commands": false,
+    "continue_on_errors": false,
+    "save_error_logs": true
+  }
+}

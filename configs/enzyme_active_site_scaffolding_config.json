@@ -1,0 +1,66 @@
+{
+  "_description": "Configuration for enzyme active site scaffolding with RFdiffusion2",
+  "_source": "Extracted from examples/use_case_1_enzyme_active_site_scaffolding.py",
+
+  "scaffolding": {
+    "ligands": "NAD,OXM",
+    "contigs": "46,A106-106,59,A166-166,2,A169-169,23,A193-193,46",
+    "contig_atoms": "{'A106':'NE,CD,CZ','A166':'OD1,CG','A169':'NH2,CZ','A193':'NE2,CD2,CE1'}",
+    "num_designs": 5
+  },
+
+  "diffusion": {
+    "inference_steps": 50,
+    "noise_scale": 1.0,
+    "temperature": 1.0
+  },
+
+  "compute": {
+    "use_apptainer": true,
+    "gpu_required": true,
+    "timeout_hours": 1
+  },
+
+  "output": {
+    "include_trajectories": true,
+    "save_intermediate": false,
+    "format": "pdb"
+  },
+
+  "common_scaffolding_targets": {
+    "dehydrogenase": {
+      "ligands": "NAD,NADH",
+      "description": "NAD-binding dehydrogenases"
+    },
+    "kinase": {
+      "ligands": "ATP,ADP",
+      "description": "ATP-binding kinases"
+    },
+    "oxidoreductase": {
+      "ligands": "FAD,FMN",
+      "description": "Flavin-binding oxidoreductases"
+    },
+    "heme_enzyme": {
+      "ligands": "HEM",
+      "description": "Heme-binding enzymes"
+    }
+  },
+
+  "presets": {
+    "fast_test": {
+      "num_designs": 2,
+      "inference_steps": 20,
+      "description": "Fast test run"
+    },
+    "standard": {
+      "num_designs": 5,
+      "inference_steps": 50,
+      "description": "Standard quality"
+    },
+    "high_quality": {
+      "num_designs": 10,
+      "inference_steps": 100,
+      "description": "High quality (slower)"
+    }
+  }
+}
