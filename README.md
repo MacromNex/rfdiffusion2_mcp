@@ -50,12 +50,25 @@ This MCP server provides tools for protein design and structure prediction using
 
 ## Installation
 
+### Quick Setup (Recommended)
+
+Run the automated setup script:
+
+```bash
+cd rfdiffusion2_mcp
+bash quick_setup.sh
+```
+
+The script will create the conda environment, install all dependencies including Chai1, and display the Claude Code configuration. See `quick_setup.sh --help` for options like `--skip-env` or `--skip-repo`.
+
 ### Prerequisites
 - Conda or Mamba (mamba recommended for faster installation)
 - Python 3.11+
 - NVIDIA GPU (optional but recommended for performance)
 
-### Step 1: Create Environment
+### Manual Installation (Alternative)
+
+If you prefer manual installation or need to customize the setup:
 
 ```bash
 # Navigate to the MCP directory
@@ -68,19 +81,15 @@ mamba create -p ./env python=3.11 -y
 # Activate environment
 mamba activate ./env
 # or: conda activate ./env
-```
 
-### Step 2: Install Dependencies
-
-```bash
-# Install MCP dependencies (already done)
+# Install MCP dependencies
 pip install fastmcp==2.14.1 loguru==0.7.3 numpy pandas tqdm
 
 # Install optional dependencies for full functionality
 pip install chai-lab  # For structure prediction tools
 ```
 
-### Step 3: Verify Installation
+### Verify Installation
 
 ```bash
 # Test MCP server
