@@ -22,11 +22,16 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # --------------------------------------------------------------------------
-# 1. Copy RFdiffusion2 repository from local build context
-#    (cloned from https://github.com/baker-laboratory/RFdiffusion2.git)
+# 1. Clone RFdiffusion2 repository (with retries for network resilience)
 # --------------------------------------------------------------------------
-COPY repo/RFdiffusion2/ ./repo/RFdiffusion2/
-RUN chmod -R a+r /app/repo/
+RUN mkdir -p repo && \
+    for attempt in 1 2 3; do \
+      echo "Clone attempt $attempt/3"; \
+      git clone --depth 1 --single-branch \
+        https://github.com/baker-laboratory/RFdiffusion2.git repo/RFdiffusion2 && break; \
+      if [ $attempt -lt 3 ]; then sleep 5; fi; \
+    done && \
+    chmod -R a+r /app/repo/
 
 # --------------------------------------------------------------------------
 # 2. Install PyTorch Geometric / graph dependencies (CUDA 12.1)
