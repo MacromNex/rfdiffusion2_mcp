@@ -29,7 +29,14 @@ RUN mkdir -p repo && \
       echo "Clone attempt $attempt/3"; \
       git clone --depth 1 --single-branch \
         https://github.com/baker-laboratory/RFdiffusion2.git repo/RFdiffusion2 && break; \
-      if [ $attempt -lt 3 ]; then sleep 5; fi; \
+      if [ $attempt -lt 3 ]; then \
+        echo "Clone failed, waiting 5 seconds before retry..."; \
+        sleep 5; \
+      else \
+        echo "ERROR: Failed to clone RFdiffusion2 after 3 attempts"; \
+        echo "Please check internet connection or visit: https://github.com/baker-laboratory/RFdiffusion2"; \
+        exit 1; \
+      fi; \
     done && \
     chmod -R a+r /app/repo/
 
